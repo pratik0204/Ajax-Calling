@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width:device-width, initial-scale=1.0">
+    <title>Ajax Calling</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <style>
+      
+        .btn{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);        
+      }
+      
+      </style>
+      
+  </head>
+  <body>
+      
+      <button class="btn btn-primary" type="button" name="button">Please CLick to see the data</button>
+      <div class="container-fluid">
+        
+          <div class="row" id="file">
+          
+          
+      
+      
+      </div>
+    </div>      
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script>
+          
+          $(document).ready(function(){
+              
+          $("button").click(function(){
+              
+          
+      
+          $.get("https://jsonplaceholder.typicode.com/posts",function(data){
+              console.log(data[1].userId);
+              
+              for(x in data){
+                  console.log(data[x]);
+                  document.getElementById("file").innerHTML += `<div style="border :2px solid black;" class="col-xs-12 col-sm-4 col-md-3 col-lg-3>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">`+data[x].id+`</h5>
+    <h6 class="card-subtitle mb-2 text-muted">`+data[x].title+`</h6>
+    <p class="card-text">`+data[x].body+`</p>
+    
+  </div>
+</div>
+      </div>`
+              }
+          });
+        })
+              $("button").click(function(){
+                  $("button").css("display","none");
+              });
+              
+    });
+          
+          
+          
+          
+          
+          
+      
+      </script>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      
+      
+
+  </body>
+</html>
